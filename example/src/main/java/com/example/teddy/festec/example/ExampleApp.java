@@ -13,6 +13,7 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
+                .withApiHost("http://")
                 .configure();
     }
 }
