@@ -1,5 +1,10 @@
 package com.example.latte.app;
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 /**
@@ -9,11 +14,12 @@ import java.util.WeakHashMap;
 public class Configurator {
     //创建一个WeakHashMap用于保存程序配置信息
     private static final WeakHashMap<String, Object> LATTE_CONFIGS = new WeakHashMap<>();
+    private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     /**
      * @return 返回用于保存程序信息的WeakHashMap
      */
-    final WeakHashMap<String,Object> getLatteConfigs() {
+    final WeakHashMap<String, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
@@ -29,6 +35,7 @@ public class Configurator {
      * 配置完成时调用，将CONFIG_READY置为 TRUE
      */
     public final void configure() {
+        initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
     }
 
@@ -43,15 +50,29 @@ public class Configurator {
     /**
      * 线程安全的懒汉模式Part 2 （静态内部类）
      */
-    private static class Holder{
+    private static class Holder {
         private static final Configurator INSTANCE = new Configurator();
     }
 
     /**
-     *向该配置文件 LATTE_CONFIGS 中添加 LATTE_CONFIGS
+     * 向该配置文件 LATTE_CONFIGS 中添加 LATTE_CONFIGS
      */
     public final Configurator withApiHost(String host) {
         LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        return this;
+    }
+
+    private void initIcons() {
+        if (ICONS.size() > 0) {
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+            for (int i = 1; i < ICONS.size(); i++) {
+                initializer.with(ICONS.get(i));
+            }
+        }
+    }
+
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
+        ICONS.add(descriptor);
         return this;
     }
 
