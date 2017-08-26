@@ -3,9 +3,8 @@ package com.example.latte.app;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
-import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.WeakHashMap;
+import java.util.HashMap;
 
 /**
  * Created by 张枫霖 on 2017/8/25
@@ -13,13 +12,13 @@ import java.util.WeakHashMap;
 
 public class Configurator {
     //创建一个WeakHashMap用于保存程序配置信息
-    private static final WeakHashMap<String, Object> LATTE_CONFIGS = new WeakHashMap<>();
+    private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     /**
      * @return 返回用于保存程序信息的WeakHashMap
      */
-    final WeakHashMap<String, Object> getLatteConfigs() {
+    final HashMap<String, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
