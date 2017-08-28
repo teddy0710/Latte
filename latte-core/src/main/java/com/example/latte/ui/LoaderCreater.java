@@ -36,7 +36,7 @@ public final class LoaderCreater {
                     .append(".indicators")
                     .append(".");
         }
-        drawableClassName.append("name");
+        drawableClassName.append(name);
         try {
             final Class<?> drawableClass = Class.forName(drawableClassName.toString());
             return (Indicator) drawableClass.newInstance();

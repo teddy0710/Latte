@@ -32,12 +32,13 @@ public class ExampleDelegate extends LatteDelegate {
     private void testRestClient() {
         RestClient.builder()
                 .url("http://www.baidu.com")
+                .loader(getContext())
 //                .params("", "")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
                         Log.d(TAG, "onSuccess: " + response);
-                        Toast.makeText(getContext(), response + "", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), response + "", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .failure(new IFailure() {
