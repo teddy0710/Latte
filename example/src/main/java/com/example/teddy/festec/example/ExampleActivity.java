@@ -11,6 +11,7 @@ import com.example.latte.activities.ProxyActivity;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.launcher.LauncherScrollDelegate;
 import com.example.latte.ec.launcher.launcherDelegate;
+import com.example.latte.ec.sign.SignInDelegate;
 import com.example.latte.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
@@ -27,7 +28,7 @@ public class ExampleActivity extends ProxyActivity {
     @Override
     public LatteDelegate setRootDelegate() {
         Log.e("ExampleActivity", "setRootDelegate: ");
-        return new SignUpDelegate();
+        return new SignInDelegate();
 
     }
 }
