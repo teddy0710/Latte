@@ -8,6 +8,8 @@ import android.view.View;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.ui.launcher.ScrollLauncherTag;
+import com.example.latte.util.storage.LattePreference;
 import com.example.latte.util.timer.BaseTimerTask;
 import com.example.latte.util.timer.ItimerListener;
 
@@ -29,6 +31,11 @@ public class launcherDelegate extends LatteDelegate implements ItimerListener {
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+            checkIsShowScroll();
+        }
     }
 
     private void initTimer() {
@@ -39,8 +46,16 @@ public class launcherDelegate extends LatteDelegate implements ItimerListener {
 
     @Override
     public Object setLayout() {
-
         return R.layout.delegete_launcher;
+    }
+
+    //判断是否显示滑动页（首次进入app）
+    private void checkIsShowScroll() {
+        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+            start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            //检查用户是否登录
+        }
     }
 
     @Override
@@ -60,6 +75,7 @@ public class launcherDelegate extends LatteDelegate implements ItimerListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowScroll();
                         }
                     }
                 }
