@@ -12,6 +12,7 @@ import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
+import com.example.latte.util.log.LatteLogger;
 
 import java.util.regex.Pattern;
 
@@ -42,19 +43,22 @@ public class SignUpDelegate extends LatteDelegate {
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
-        if (checkForm()) {
-//            RestClient.builder()
-//                    .url("")
-//                    .params("","")
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//
-//                        }
-//                    })
-//                    .build()
-//                    .post();
-            Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
+        if (!checkForm()) {
+            RestClient.builder()
+                    .url("http://116.196.95.67/RestServer/api/user_profile.php")
+                    .params("name", mName.getText().toString())
+                    .params("email", mEmail.getText().toString())
+                    .params("phone", mPhone.getText().toString())
+                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
+                            LatteLogger.json("USER_PROFILE", response);
+                        }
+                    })
+                    .build()
+                    .post();
         }
     }
 
