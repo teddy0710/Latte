@@ -152,7 +152,7 @@ public final class FileUtil {
                 e.printStackTrace();
             }
         }
-//        refreshDCIM();
+        refreshDCIM();
 
         return fileName;
     }
@@ -248,101 +248,101 @@ public final class FileUtil {
     /**
      * 通知系统刷新系统相册，使照片展现出来
      */
-//    private static void refreshDCIM() {
-//        if (Build.VERSION.SDK_INT >= 19) {
-//            //兼容android4.4版本，只扫描存放照片的目录
-//            MediaScannerConnection.scanFile(Latte.getApplicationContext(),
-//                    new String[]{Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath()},
-//                    null, null);
-//        } else {
-//            //扫描整个SD卡来更新系统图库，当文件很多时用户体验不佳，且不适合4.4以上版本
-//            Latte.getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" +
-//                    Environment.getExternalStorageDirectory())));
-//        }
-//    }
+    private static void refreshDCIM() {
+        if (Build.VERSION.SDK_INT >= 19) {
+            //兼容android4.4版本，只扫描存放照片的目录
+            MediaScannerConnection.scanFile(Latte.getApplicationContext(),
+                    new String[]{Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath()},
+                    null, null);
+        } else {
+            //扫描整个SD卡来更新系统图库，当文件很多时用户体验不佳，且不适合4.4以上版本
+            Latte.getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" +
+                    Environment.getExternalStorageDirectory())));
+        }
+    }
 
     /**
      * 读取raw目录中的文件,并返回为字符串
      */
-//    public static String getRawFile(int id) {
-//        final InputStream is = Latte.getApplicationContext().getResources().openRawResource(id);
-//        final BufferedInputStream bis = new BufferedInputStream(is);
-//        final InputStreamReader isr = new InputStreamReader(bis);
-//        final BufferedReader br = new BufferedReader(isr);
-//        final StringBuilder stringBuilder = new StringBuilder();
-//        String str;
-//        try {
-//            while ((str = br.readLine()) != null) {
-//                stringBuilder.append(str);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                br.close();
-//                isr.close();
-//                bis.close();
-//                is.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return stringBuilder.toString();
-//    }
+    public static String getRawFile(int id) {
+        final InputStream is = Latte.getApplicationContext().getResources().openRawResource(id);
+        final BufferedInputStream bis = new BufferedInputStream(is);
+        final InputStreamReader isr = new InputStreamReader(bis);
+        final BufferedReader br = new BufferedReader(isr);
+        final StringBuilder stringBuilder = new StringBuilder();
+        String str;
+        try {
+            while ((str = br.readLine()) != null) {
+                stringBuilder.append(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+                isr.close();
+                bis.close();
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return stringBuilder.toString();
+    }
 
 
-//    public static void setIconFont(String path, TextView textView) {
-//        final Typeface typeface = Typeface.createFromAsset(Latte.getApplicationContext().getAssets(), path);
-//        textView.setTypeface(typeface);
-//    }
+    public static void setIconFont(String path, TextView textView) {
+        final Typeface typeface = Typeface.createFromAsset(Latte.getApplicationContext().getAssets(), path);
+        textView.setTypeface(typeface);
+    }
 
     /**
      * 读取assets目录下的文件,并返回字符串
      */
-//    public static String getAssetsFile(String name) {
-//        InputStream is = null;
-//        BufferedInputStream bis = null;
-//        InputStreamReader isr = null;
-//        BufferedReader br = null;
-//        StringBuilder stringBuilder = null;
-//        final AssetManager assetManager = Latte.getApplicationContext().getAssets();
-//        try {
-//            is = assetManager.open(name);
-//            bis = new BufferedInputStream(is);
-//            isr = new InputStreamReader(bis);
-//            br = new BufferedReader(isr);
-//            stringBuilder = new StringBuilder();
-//            String str;
-//            while ((str = br.readLine()) != null) {
-//                stringBuilder.append(str);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (br != null) {
-//                    br.close();
-//                }
-//                if (isr != null) {
-//                    isr.close();
-//                }
-//                if (bis != null) {
-//                    bis.close();
-//                }
-//                if (is != null) {
-//                    is.close();
-//                }
-//                assetManager.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        if (stringBuilder != null) {
-//            return stringBuilder.toString();
-//        } else {
-//            return null;
-//        }
-//    }
+    public static String getAssetsFile(String name) {
+        InputStream is = null;
+        BufferedInputStream bis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+        StringBuilder stringBuilder = null;
+        final AssetManager assetManager = Latte.getApplicationContext().getAssets();
+        try {
+            is = assetManager.open(name);
+            bis = new BufferedInputStream(is);
+            isr = new InputStreamReader(bis);
+            br = new BufferedReader(isr);
+            stringBuilder = new StringBuilder();
+            String str;
+            while ((str = br.readLine()) != null) {
+                stringBuilder.append(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+                if (isr != null) {
+                    isr.close();
+                }
+                if (bis != null) {
+                    bis.close();
+                }
+                if (is != null) {
+                    is.close();
+                }
+                assetManager.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (stringBuilder != null) {
+            return stringBuilder.toString();
+        } else {
+            return null;
+        }
+    }
 
     public static String getRealFilePath(final Context context, final Uri uri) {
         if (null == uri) return null;

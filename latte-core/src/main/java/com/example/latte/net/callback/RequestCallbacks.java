@@ -2,6 +2,8 @@ package com.example.latte.net.callback;
 
 import android.os.Handler;
 
+import com.example.latte.app.ConfigKeys;
+import com.example.latte.app.Latte;
 import com.example.latte.ui.LatteLoader;
 import com.example.latte.ui.LoaderStyle;
 
@@ -43,9 +45,8 @@ public class RequestCallbacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
-        stopLoading();
+        onRequestFinish();
     }
-
 
 
     @Override
@@ -56,16 +57,19 @@ public class RequestCallbacks implements Callback<String> {
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
         }
-        stopLoading();
+        onRequestFinish();
     }
 
 
-    private void stopLoading() {
-        HANDLER.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                LatteLoader.stopLoading();
-            }
-        }, 1000);
+    private void onRequestFinish() {
+        final long delayed = Latte.getConfiguration(ConfigKeys.LOADER_DELAYED);
+        if (LOADERSTYLE != null) {
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LatteLoader.stopLoading();
+                }
+            }, delayed);
+        }
     }
 }
