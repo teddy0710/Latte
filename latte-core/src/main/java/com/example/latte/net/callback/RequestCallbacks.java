@@ -4,8 +4,8 @@ import android.os.Handler;
 
 import com.example.latte.app.ConfigKeys;
 import com.example.latte.app.Latte;
-import com.example.latte.ui.LatteLoader;
-import com.example.latte.ui.LoaderStyle;
+import com.example.latte.ui.loader.LatteLoader;
+import com.example.latte.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

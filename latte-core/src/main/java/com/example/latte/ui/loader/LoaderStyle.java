@@ -1,4 +1,4 @@
-package com.example.latte.ui;
+package com.example.latte.ui.loader;
 
 /**
  * Created by 张枫霖 on 2017/8/28
