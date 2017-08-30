@@ -1,5 +1,6 @@
 package com.example.latte.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -36,6 +37,16 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
+
     @OnClick(R2.id.tv_link_sign_in)
     void onClickLink() {
         start(new SignInDelegate());
@@ -43,6 +54,7 @@ public class SignUpDelegate extends LatteDelegate {
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
+        // TODO: 2017-08-30 当前为错误输入可进入
         if (!checkForm()) {
             RestClient.builder()
                     .url("http://116.196.95.67/RestServer/api/user_profile.php")
@@ -55,7 +67,7 @@ public class SignUpDelegate extends LatteDelegate {
                         public void onSuccess(String response) {
                             Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
                             LatteLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignUp(response,mISignListener);
                         }
                     })
                     .build()
