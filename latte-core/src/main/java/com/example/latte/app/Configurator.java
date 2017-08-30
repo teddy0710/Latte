@@ -1,5 +1,7 @@
 package com.example.latte.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -95,6 +97,21 @@ public class Configurator {
     public final Configurator withInterceptrs(ArrayList<Interceptor> interceptrs) {
         INTERCEPTORS.addAll(interceptrs);
         LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withWechatAppId(String id) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, id);
+        return this;
+    }
+
+    public final Configurator withWechatAppSecret(String secret) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, secret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, activity);
         return this;
     }
 
