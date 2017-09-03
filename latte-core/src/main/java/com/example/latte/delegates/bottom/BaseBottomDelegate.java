@@ -4,18 +4,31 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
 
+import com.example.latte.R;
+import com.example.latte.R2;
 import com.example.latte.delegates.LatteDelegate;
+import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
+import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.SupportFragment;
+
 /**
  * Created by 张枫霖 on 2017-08-31
  */
 
-public abstract class BaseBottomDelegate extends LatteDelegate {
+public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
     private final ArrayList<BottomTabBean> TAB_BEENS = new ArrayList<>();
 
@@ -24,7 +37,15 @@ public abstract class BaseBottomDelegate extends LatteDelegate {
     private int mIndexDelegate = 0;
     private int mClickedColor = Color.RED;
 
+    @BindView(R2.id.bottom_bar)
+    LinearLayoutCompat mBottomBar = null;
+
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
+
+    @Override
+    public Object setLayout() {
+        return R.layout.delegate_bottom;
+    }
 
     public abstract int setIndexDelegate();
 
@@ -47,5 +68,57 @@ public abstract class BaseBottomDelegate extends LatteDelegate {
             TAB_BEENS.add(key);
             ITEM_DELEGATES.add(value);
         }
+    }
+
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        final int size = ITEMS.size();
+        for (int i = 0; i < size; i++) {
+            LayoutInflater.from(getContext()).inflate(R.layout.bottom_item_icon_text_layout, mBottomBar);
+            final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
+            //设置每个item的点击事件
+            item.setTag(i);
+            item.setOnClickListener(this);
+            final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+            final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
+            final BottomTabBean bean = TAB_BEENS.get(i);
+            //初始化数据
+            itemIcon.setText(bean.getIcon());
+            itemTitle.setText(bean.getTitle());
+            if (i == mIndexDelegate) {
+                itemIcon.setTextColor(mClickedColor);
+                itemTitle.setTextColor(mClickedColor);
+            }
+
+        }
+        final SupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new SupportFragment[size]);
+        loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, (ISupportFragment[]) delegateArray);
+
+
+    }
+
+    private void restColor() {
+        final int count = mBottomBar.getChildCount();
+        for (int i = 0; i < count; i++) {
+            final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
+            final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+            itemIcon.setTextColor(Color.GRAY);
+            final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
+            itemTitle.setTextColor(Color.GRAY);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        final int tag = (int) view.getTag();
+        restColor();
+        final RelativeLayout item = (RelativeLayout) view;
+        final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+        itemIcon.setTextColor(mClickedColor);
+        final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
+        itemTitle.setTextColor(mClickedColor);
+        showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
+        //注意先后顺序
+        mCurrentDelegate = tag;
     }
 }
