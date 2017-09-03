@@ -43,8 +43,7 @@ public class SignInDelegate extends LatteDelegate {
 
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
-        // TODO: 2017-08-30 当前为错误输入可进入
-        if (!checkForm()) {
+        if (checkForm()) {
             RestClient.builder()
                     .url("http://116.196.95.67/RestServer/api/user_profile.php")
                     .params("email", mEmail.getText().toString())

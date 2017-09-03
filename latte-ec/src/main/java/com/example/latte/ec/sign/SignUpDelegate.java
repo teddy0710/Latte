@@ -54,8 +54,7 @@ public class SignUpDelegate extends LatteDelegate {
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
-        // TODO: 2017-08-30 当前为错误输入可进入
-        if (!checkForm()) {
+        if (checkForm()) {
             RestClient.builder()
                     .url("http://116.196.95.67/RestServer/api/user_profile.php")
                     .params("name", mName.getText().toString())
@@ -67,7 +66,7 @@ public class SignUpDelegate extends LatteDelegate {
                         public void onSuccess(String response) {
                             Toast.makeText(getContext(), "" + response, Toast.LENGTH_SHORT).show();
                             LatteLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignUp(response,mISignListener);
+                            SignHandler.onSignUp(response, mISignListener);
                         }
                     })
                     .build()

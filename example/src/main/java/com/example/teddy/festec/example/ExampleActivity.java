@@ -12,6 +12,7 @@ import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.launcher.LauncherScrollDelegate;
 import com.example.latte.ec.launcher.launcherDelegate;
+import com.example.latte.ec.main.index.EcBottomDelegate;
 import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
 import com.example.latte.ec.sign.SignUpDelegate;
@@ -35,7 +36,6 @@ public class ExampleActivity extends ProxyActivity implements
     @Override
     public LatteDelegate setRootDelegate() {
         return new launcherDelegate();
-
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ExampleActivity extends ProxyActivity implements
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束用户已经登录", Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束用户未登录！！", Toast.LENGTH_SHORT).show();

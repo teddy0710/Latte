@@ -19,8 +19,8 @@ public final class ItemBuilder {
         return this;
     }
 
-    public final ItemBuilder addItems(LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS) {
-        ITEMS.putAll(ITEMS);
+    public final ItemBuilder addItems(LinkedHashMap<BottomTabBean, BottomItemDelegate> items) {
+        ITEMS.putAll(items);
         return this;
     }
 
