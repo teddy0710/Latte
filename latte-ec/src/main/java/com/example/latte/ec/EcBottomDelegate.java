@@ -1,4 +1,4 @@
-package com.example.latte.ec.main.index;
+package com.example.latte.ec;
 
 import android.graphics.Color;
 
@@ -6,6 +6,7 @@ import com.example.latte.delegates.bottom.BaseBottomDelegate;
 import com.example.latte.delegates.bottom.BottomItemDelegate;
 import com.example.latte.delegates.bottom.BottomTabBean;
 import com.example.latte.delegates.bottom.ItemBuilder;
+import com.example.latte.ec.main.index.IndexDelegate;
 import com.example.latte.ec.main.sort.SortDelegate;
 
 import java.util.LinkedHashMap;

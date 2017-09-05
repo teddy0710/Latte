@@ -2,20 +2,16 @@ package com.example.teddy.festec.example;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.latte.activities.ProxyActivity;
 import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
-import com.example.latte.ec.launcher.LauncherScrollDelegate;
 import com.example.latte.ec.launcher.launcherDelegate;
-import com.example.latte.ec.main.index.EcBottomDelegate;
+import com.example.latte.ec.EcBottomDelegate;
 import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
-import com.example.latte.ec.sign.SignUpDelegate;
 import com.example.latte.ui.launcher.ILauncherListener;
 import com.example.latte.ui.launcher.OnLauncherFinishTag;
 
