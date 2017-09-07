@@ -7,12 +7,19 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.latte.delegates.bottom.BottomItemDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.net.RestClient;
+import com.example.latte.net.callback.ISuccess;
+import com.example.latte.ui.recycler.MultipleFields;
+import com.example.latte.ui.recycler.MultipleItemEntity;
 import com.example.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -37,6 +44,19 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = new RefreshHandler(mRefreshLayout);
+        RestClient.builder()
+                .url("index.php")
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final IndexDataConverter converter = new IndexDataConverter();
+                        converter.setJsonData(response);
+                        final ArrayList<MultipleItemEntity> list = converter.convert();
+                        final String image = list.get(1).getField(MultipleFields.IMAGE_URL);
+                        Toast.makeText(_mActivity, "" + image, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build().get();
     }
 
     private void initRefreshLayout() {

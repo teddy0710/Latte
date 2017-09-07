@@ -21,6 +21,10 @@ public class MultipleItemEntity implements MultiItemEntity {
         FIELDS_REFERENCE.get().putAll(fields);
     }
 
+    public static MultipleItemEntityBuilder builder() {
+        return new MultipleItemEntityBuilder();
+    }
+
     @Override
     public int getItemType() {
         return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);

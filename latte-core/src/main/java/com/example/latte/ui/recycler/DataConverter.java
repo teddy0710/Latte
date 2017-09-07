@@ -14,11 +14,12 @@ public abstract class DataConverter {
 
     public abstract ArrayList<MultipleItemEntity> convert();
 
-    public DataConverter(String json) {
+    public DataConverter setJsonData(String json) {
         this.mJsonData = json;
+        return this;
     }
 
-    protected String getmJsonData() {
+    protected String getJsonData() {
         if (mJsonData == null || mJsonData.isEmpty()) {
             throw new NullPointerException("DATA IS NULL");
         }
