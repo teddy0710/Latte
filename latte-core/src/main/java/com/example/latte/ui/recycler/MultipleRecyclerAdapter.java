@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.latte.R;
 import com.example.latte.ui.banner.BannerCreator;
 
@@ -29,6 +28,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
+        init();
     }
 
     public static MultipleRecyclerAdapter create(List<MultipleItemEntity> data) {
