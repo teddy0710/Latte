@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.latte.delegates.bottom.BottomItemDelegate;
+import com.example.latte.ec.EcBottomDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.ui.recycler.BaseDecoration;
@@ -57,6 +58,8 @@ public class IndexDelegate extends BottomItemDelegate {
         mRecyclerView.addItemDecoration(
                 BaseDecoration.create(ContextCompat.getColor(getContext()
                         , R.color.app_background), 5));
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override
