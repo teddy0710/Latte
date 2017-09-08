@@ -60,4 +60,6 @@ public final class LatteLogger {
             Logger.t(tag).e(message);
         }
     }
+
+
 }
