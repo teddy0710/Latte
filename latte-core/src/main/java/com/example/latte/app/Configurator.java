@@ -2,7 +2,10 @@ package com.example.latte.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
+import com.example.latte.delegates.web.event.Event;
+import com.example.latte.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -133,5 +136,11 @@ public class Configurator {
             throw new NullPointerException(key.toString() + "IS NULL");
         }
         return (T) LATTE_CONFIGS.get(key);
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+        return this;
     }
 }

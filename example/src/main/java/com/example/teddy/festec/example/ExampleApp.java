@@ -3,6 +3,7 @@ package com.example.teddy.festec.example;
 import android.app.Application;
 
 import com.example.latte.app.Latte;
+import com.example.latte.delegates.web.event.TestEvent;
 import com.example.latte.ec.datebase.DatebaseManager;
 import com.example.latte.ec.icon.FontEcMoudle;
 import com.example.latte.net.interceptors.DebugInterceptor;
@@ -22,6 +23,7 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcMoudle())
                 .withLoaderDelayed(1000)
 //                .withApiHost("http://127.0.0.1/")
+                .withWebEvent("test", new TestEvent())
                 .withApiHost("http://116.196.95.67/RestServer/api/")
                 .withInterceptr(new DebugInterceptor("text", R.raw.text))
                 .withWechatAppId("")
