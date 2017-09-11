@@ -1,10 +1,11 @@
-package com.example.latte.delegates.web.event;
+package com.example.teddy.festec.example.event;
 
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.example.latte.delegates.web.event.Event;
 import com.example.latte.util.log.LatteLogger;
 
 
@@ -22,7 +23,7 @@ public class TestEvent extends Event {
                 @TargetApi(Build.VERSION_CODES.KITKAT)
                 @Override
                 public void run() {
-                    //安卓原生响应web
+                    //原生调用web
                     webView.evaluateJavascript("nativeCall();", null);
                 }
             });

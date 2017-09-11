@@ -143,4 +143,9 @@ public class Configurator {
         manager.addEvent(name, event);
         return this;
     }
+
+    public Configurator withJavacriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
 }
