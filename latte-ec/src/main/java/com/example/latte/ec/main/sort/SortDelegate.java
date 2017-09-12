@@ -31,8 +31,8 @@ public class SortDelegate extends BottomItemDelegate {
         //初始化左侧分类栏
         final VerticalListDelegate listDelegate = new VerticalListDelegate();
         //加载该分类栏Fragment到父布局中的制定位置
-        loadRootFragment(R.id.vertail_list_container, listDelegate);
+        getSupportDelegate().loadRootFragment(R.id.vertail_list_container, listDelegate);
         //设置右侧第一个分类显示，默认显示分类一（replace适用于重复加载）
-        replaceLoadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1), false);
+        getSupportDelegate().loadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1));
     }
 }

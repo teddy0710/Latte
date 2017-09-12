@@ -30,7 +30,7 @@ public class IndexItemClickListener extends SimpleClickListener {
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
         final GoodsDetailDelegate detailDelegate = GoodsDetailDelegate.create();
-        DELEGATE.start(detailDelegate);
+        DELEGATE.getSupportDelegate().start(detailDelegate);
 
     }
 
