@@ -3,7 +3,6 @@ package com.example.latte.delegates.web.client;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.webkit.CookieManager;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 

@@ -4,17 +4,16 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.main.sort.SortDelegate;
 import com.example.latte.ec.main.sort.content.ContentDelegate;
-import com.example.latte.ui.recycler.ItemType;
-import com.example.latte.ui.recycler.MultipleFields;
-import com.example.latte.ui.recycler.MultipleItemEntity;
-import com.example.latte.ui.recycler.MultipleRecyclerAdapter;
-import com.example.latte.ui.recycler.MultipleViewHolder;
+import com.example.ui.recycler.ItemType;
+import com.example.ui.recycler.MultipleFields;
+import com.example.ui.recycler.MultipleItemEntity;
+import com.example.ui.recycler.MultipleRecyclerAdapter;
+import com.example.ui.recycler.MultipleViewHolder;
 
 import java.util.List;
 

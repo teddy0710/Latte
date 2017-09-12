@@ -8,12 +8,11 @@ import android.widget.Toast;
 import com.example.latte.activities.ProxyActivity;
 import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
-import com.example.latte.ec.launcher.launcherDelegate;
 import com.example.latte.ec.EcBottomDelegate;
 import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
-import com.example.latte.ui.launcher.ILauncherListener;
-import com.example.latte.ui.launcher.OnLauncherFinishTag;
+import com.example.ui.launcher.ILauncherListener;
+import com.example.ui.launcher.OnLauncherFinishTag;
 
 import qiu.niorgai.StatusBarCompat;
 

@@ -17,8 +17,8 @@ import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.net.RestCreator;
 import com.example.latte.net.rx.RxRestClient;
-import com.example.latte.ui.recycler.BaseDecoration;
-import com.example.latte.ui.refresh.RefreshHandler;
+import com.example.ui.recycler.BaseDecoration;
+import com.example.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.WeakHashMap;

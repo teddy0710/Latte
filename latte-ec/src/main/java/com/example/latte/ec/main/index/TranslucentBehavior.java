@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.latte.ec.R;
-import com.example.latte.ui.recycler.RgbValue;
+import com.example.ui.recycler.RgbValue;
 
 /**
  * Created by 张枫霖 on 2017-09-08

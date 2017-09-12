@@ -1,7 +1,6 @@
 package com.example.latte.ui.loader;
 
 import android.content.Context;
-import android.view.GestureDetector;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;

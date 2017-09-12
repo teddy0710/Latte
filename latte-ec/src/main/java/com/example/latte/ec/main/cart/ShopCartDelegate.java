@@ -17,7 +17,7 @@ import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
-import com.example.latte.ui.recycler.MultipleItemEntity;
+import com.example.ui.recycler.MultipleItemEntity;
 import com.example.latte.util.log.LatteLogger;
 import com.joanzapata.iconify.widget.IconTextView;
 

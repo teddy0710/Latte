@@ -9,14 +9,12 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.latte.app.AccountManager;
 import com.example.latte.app.IUserChecker;
-import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.R;
-import com.example.latte.ec.sign.SignHandler;
-import com.example.latte.ui.launcher.ILauncherListener;
-import com.example.latte.ui.launcher.LauncherHolderCreater;
-import com.example.latte.ui.launcher.OnLauncherFinishTag;
-import com.example.latte.ui.launcher.ScrollLauncherTag;
+import com.example.ui.launcher.ILauncherListener;
+import com.example.ui.launcher.LauncherHolderCreater;
+import com.example.ui.launcher.OnLauncherFinishTag;
+import com.example.ui.launcher.ScrollLauncherTag;
 import com.example.latte.util.storage.LattePreference;
 
 import java.util.ArrayList;
