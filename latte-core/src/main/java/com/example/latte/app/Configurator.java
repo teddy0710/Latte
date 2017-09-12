@@ -26,6 +26,7 @@ public class Configurator {
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
     private static final Handler HANDLER = new Handler();
+
     /**
      * @return 返回用于保存程序信息的WeakHashMap
      */
@@ -146,6 +147,12 @@ public class Configurator {
 
     public Configurator withJavacriptInterface(@NonNull String name) {
         LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+    //浏览器加载的HOST
+    public Configurator withWebHost(String host) {
+        LATTE_CONFIGS.put(ConfigKeys.WEB_HOST, host);
         return this;
     }
 }

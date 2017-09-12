@@ -2,16 +2,19 @@ package com.example.latte.delegates.web.client;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.latte.app.ConfigKeys;
 import com.example.latte.app.Latte;
 import com.example.latte.delegates.IPageLoadListener;
 import com.example.latte.delegates.web.WebDelegate;
 import com.example.latte.delegates.web.route.Router;
 import com.example.latte.ui.loader.LatteLoader;
 import com.example.latte.util.log.LatteLogger;
+import com.example.latte.util.storage.LattePreference;
 
 /**
  * Created by 张枫霖 on 2017-09-11
@@ -51,9 +54,25 @@ public class WebViewClientImpl extends WebViewClient {
         LatteLoader.showLoading(view.getContext());
     }
 
+    //获取浏览器Cookie
+    private void syncCookie() {
+        final CookieManager manager = CookieManager.getInstance();
+        //这里的cookie和api请求的cookie不一样，这个在网页不可见
+        final String webHost = Latte.getConfiguration(ConfigKeys.WEB_HOST);
+        if (webHost != null) {
+            if (manager.hasCookies()) {
+                final String cookieStr = manager.getCookie(webHost);
+                if (cookieStr != null && !cookieStr.equals("")) {
+                    LattePreference.addCustomAppProfile("cookie", cookieStr);
+                }
+            }
+        }
+    }
+
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        syncCookie();
         if (mPageLoadListener != null) {
             mPageLoadListener.onLoadEnd();
         }

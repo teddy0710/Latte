@@ -3,6 +3,7 @@ package com.example.teddy.festec.example;
 import android.app.Application;
 
 import com.example.latte.app.Latte;
+import com.example.latte.net.rx.AddCookieInterceptor;
 import com.example.teddy.festec.example.event.TestEvent;
 import com.example.latte.ec.datebase.DatebaseManager;
 import com.example.latte.ec.icon.FontEcMoudle;
@@ -29,6 +30,9 @@ public class ExampleApp extends Application {
                 .withWechatAppSecret("")
                 .withJavacriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
+                //添加Cookie拦截器
+                .withWebHost("https://www.baidu.com/")
+                .withInterceptr(new AddCookieInterceptor())
                 .configure();
         initStetho();
 
