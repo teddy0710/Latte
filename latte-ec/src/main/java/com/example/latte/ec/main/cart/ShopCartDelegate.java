@@ -15,6 +15,8 @@ import com.alibaba.fastjson.JSON;
 import com.example.latte.delegates.bottom.BottomItemDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.ec.pay.FastPay;
+import com.example.latte.ec.pay.IAlPayResultListener;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
 import com.example.ui.recycler.MultipleItemEntity;
@@ -32,7 +34,7 @@ import butterknife.OnClick;
  * Created by 张枫霖 on 2017-09-12
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener, IAlPayResultListener {
     private ShopCartAdapter mAdapter = null;
     //购物车数量标记
     private int mCurrentCount = 0;
@@ -94,6 +96,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         }
         checkItemCount();
     }
+
     @OnClick(R2.id.tv_top_shop_cart_clear)
     void onClickClear() {
         mAdapter.getData().clear();
@@ -104,13 +107,20 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
         createOrder();
+//        FastPay.create(this).beginPayDialog();
     }
 
     //创建订单，注意，和支付是没有关系的
     private void createOrder() {
         final String orderUrl = "你的生成订单的API";
         final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
-        //加入你的参数
+        // TODO: 2017-09-12  加入参数
+//        orderParams.put("", "");
+//        orderParams.put("", "");
+//        orderParams.put("", "");
+//        orderParams.put("", "");
+//        orderParams.put("", "");
+//        orderParams.put("", "");
         RestClient.builder()
                 .url(orderUrl)
                 .loader(getContext())
@@ -120,11 +130,12 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                     public void onSuccess(String response) {
                         //进行具体的支付
                         LatteLogger.d("ORDER", response);
+                        // TODO: 2017-09-12 result根据服务端确定
                         final int orderId = JSON.parseObject(response).getInteger("result");
-//                        FastPay.create(ShopCartDelegate.this)
-//                                .setPayResultListener(ShopCartDelegate.this)
-//                                .setOrderId(orderId)
-//                                .beginPayDialog();
+                        FastPay.create(ShopCartDelegate.this)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
                     }
                 })
                 .build()
@@ -191,5 +202,30 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     public void onItemClick(double itemTotalPrice) {
         final double price = mAdapter.getTotalPrice();
         mTvTotalPrice.setText(String.valueOf(price));
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }
