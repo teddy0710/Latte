@@ -53,7 +53,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
 //        onCallRxGet();
-        onCallRxRestClient();
+//        onCallRxRestClient();
     }
     // TODO: 2017-09-12 测试
     private void onCallRxRestClient() {
