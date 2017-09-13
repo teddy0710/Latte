@@ -14,6 +14,7 @@ import com.example.latte.ec.R2;
 import com.example.latte.ec.main.personal.list.ListAdapter;
 import com.example.latte.ec.main.personal.list.ListBean;
 import com.example.latte.ec.main.personal.list.ListItemType;
+import com.example.latte.ec.main.personal.order.OrderListDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,22 +37,22 @@ public class PersonalDelegate extends BottomItemDelegate {
         return R.layout.delegate_personal;
     }
 
-//    @OnClick(R2.id.tv_all_order)
-//    void onClickAllOrder() {
-//        mArgs.putString(ORDER_TYPE, "all");
-//        startOrderListByType();
-//    }
+    @OnClick(R2.id.tv_all_order)
+    void onClickAllOrder() {
+        mArgs.putString(ORDER_TYPE, "all");
+        startOrderListByType();
+    }
 //
 //    @OnClick(R2.id.img_user_avatar)
 //    void onClickAvatar() {
 //        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
 //    }
 //
-//    private void startOrderListByType() {
-//        final OrderListDelegate delegate = new OrderListDelegate();
-//        delegate.setArguments(mArgs);
-//        getParentDelegate().getSupportDelegate().start(delegate);
-//    }
+    private void startOrderListByType() {
+        final OrderListDelegate delegate = new OrderListDelegate();
+        delegate.setArguments(mArgs);
+        getParentDelegate().getSupportDelegate().start(delegate);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
