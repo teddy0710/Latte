@@ -23,7 +23,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
-
 public class PersonalDelegate extends BottomItemDelegate {
 
     @BindView(R2.id.rv_personal_setting)
@@ -42,12 +41,12 @@ public class PersonalDelegate extends BottomItemDelegate {
         mArgs.putString(ORDER_TYPE, "all");
         startOrderListByType();
     }
-//
-//    @OnClick(R2.id.img_user_avatar)
-//    void onClickAvatar() {
+
+    @OnClick(R2.id.img_user_avatar)
+    void onClickAvatar() {
 //        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
-//    }
-//
+    }
+
     private void startOrderListByType() {
         final OrderListDelegate delegate = new OrderListDelegate();
         delegate.setArguments(mArgs);

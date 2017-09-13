@@ -55,6 +55,7 @@ public class IndexDelegate extends BottomItemDelegate {
 //        onCallRxGet();
 //        onCallRxRestClient();
     }
+
     // TODO: 2017-09-12 测试
     private void onCallRxRestClient() {
         final String url = "index.php";
@@ -120,7 +121,7 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_bright,
-                android.R.color.holo_orange_light,
+                R.color.app_main,
                 android.R.color.holo_red_light
         );
         mRefreshLayout.setProgressViewOffset(true, 120, 300);

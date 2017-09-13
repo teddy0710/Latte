@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.example.latte.delegates.PermissionCheckerDelegate;
 import com.example.latte.delegates.bottom.BottomItemDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
